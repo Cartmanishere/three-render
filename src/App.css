@@ -1,0 +1,11 @@
+.main-app {
+  margin: 0;
+}
+
+.select-box {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  width: 20%;
+  min-width: 100px;
+}
