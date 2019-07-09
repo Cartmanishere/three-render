@@ -4,6 +4,8 @@ import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js';
 var THREE = window.THREE = require('three');
 require('three/examples/js/loaders/GLTFLoader');
 
+var LOAD_EXAMPLE = 'https://raw.githubusercontent.com/Cartmanishere/three-render/master/public/scene.gltf';
+
 class WebVRComponent extends React.Component {
 
     constructor(props) {
@@ -34,14 +36,14 @@ class WebVRComponent extends React.Component {
         this.scene.add( directionalLight );
 
         const loader = new THREE.GLTFLoader();
-        loader.load( '/scene.gltf', (gltf) => {
+        loader.load( LOAD_EXAMPLE, (gltf) => {
 
             const model = gltf.scene;
             this.mixer = new THREE.AnimationMixer( model );
             gltf.animations.forEach(( clip ) => {
                 this.mixer.clipAction(clip).play();
             });
-
+            gltf.scene.position.y -= 10;
             this.scene.add( gltf.scene );
             this.renderer.render( this.scene, this.camera );
         });
